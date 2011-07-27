@@ -96,6 +96,13 @@ LOCAL_SHARED_LIBRARIES := $(common_shared_libraries)
 
 LOCAL_STATIC_LIBRARIES := libfs_mgr
 
+ifeq ($(BOARD_HAVE_HDMI_SUPPORT), SAMSUNG_HDMI_SUPPORT)
+LOCAL_CFLAGS += -DBOARD_USES_HDMI
+LOCAL_SHARED_LIBRARIES += libhdmiclient
+LOCAL_C_INCLUDES += \
+	hardware/samsung/$(TARGET_BOARD_PLATFORM)/hal/libhdmi/libhdmiservice
+endif
+
 include $(BUILD_EXECUTABLE)
 
 include $(CLEAR_VARS)
